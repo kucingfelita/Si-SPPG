@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SI-SPPG Pucang 2</title>
+
+  <!-- Tambahkan link font Rufina -->
+  <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -18,6 +22,13 @@
       justify-content: space-between;
       padding: 12px 40px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+      /* agar tetap di atas saat scroll */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
     }
 
     .navbar-left {
@@ -31,13 +42,6 @@
       width: 50px;
       object-fit: contain;
       border-radius: 50%;
-    }
-
-    .navbar-left h1 {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 0;
-      letter-spacing: 0.3px;
     }
 
     .navbar-left h1 {
@@ -61,6 +65,7 @@
       font-size: 15px;
       font-weight: 500;
       padding-bottom: 6px;
+      transition: 0.3s;
     }
 
     .navbar-right a.active {
@@ -83,6 +88,12 @@
         margin-top: 8px;
       }
     }
+
+    /* supaya konten tidak tertutup navbar */
+    .main-content {
+      margin-top: 80px;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
@@ -96,7 +107,7 @@
 
   <nav class="navbar">
     <div class="navbar-left">
-      <img src="/Si-SPPG/assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi" style="height:50px; width:50px; object-fit:contain; border-radius:6px;">
+      <img src="/Si-SPPG/assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi">
       <h1>SI-SPPG Pucang 2</h1>
     </div>
 
@@ -107,6 +118,7 @@
       <a href="laporan.php" class="<?php echo is_active('laporan.php', $current); ?>">Pelayanan & Pengajuan</a>
     </div>
   </nav>
+
 
 </body>
 </html>

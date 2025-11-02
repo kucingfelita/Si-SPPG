@@ -11,7 +11,8 @@
 </head>
 <body>
 <?php require 'template/navbar.php'; ?>
-<main>
+
+<div class="main">
     <h2>Apa itu SPPG dalam Program Makan Bergizi Gratis?</h2>
 
     <p>
@@ -55,7 +56,7 @@
         <li>Mendorong partisipasi, tanggung jawab, dan kolaborasi dengan UMKM dengan mendengarkan masukan dan kebutuhan lokal.</li>
         <li>Menciptakan tata kelola program yang transparan dan profesional.</li>
     </ul>
-</main>
+</div>
 <?php require 'template/footer.php'; ?>
 </body>
 </html>

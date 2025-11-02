@@ -12,6 +12,7 @@
       text-align: center;
       background: #d9d9d9;
       padding: 16px 0;
+      z-index: 10;
    }
 
    .footer-p {

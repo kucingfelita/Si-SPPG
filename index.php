@@ -20,7 +20,6 @@
 
     html, body {
       height: 100%;
-      font-family: 'Abhaya Libre', serif; /* ✅ Pastikan diterapkan di sini */
     }
 
     /* Bagian hero / sambutan */
@@ -64,7 +63,7 @@
     }
 
     .hero-content p {
-      font-family: 'Abhaya Libre', serif; /* ✅ Terapkan langsung juga */
+      font-family: 'Abhaya Libre', serif;
       font-size: 22px;
       font-weight: 400;
       color: #f0f0f0;
@@ -81,7 +80,7 @@
   </style>
 </head>
 <body>
-    <?php require 'template/navbar.php'; ?>
+<?php require 'template/navbar.php'; ?>
 
   <section class="hero">
     <div class="hero-content">

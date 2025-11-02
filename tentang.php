@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami | SI-SPPG Pucang 2</title>
     <link rel="stylesheet" href="assets/css/tentang.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
 </head>
 <body>
 <?php require 'template/navbar.php'; ?>

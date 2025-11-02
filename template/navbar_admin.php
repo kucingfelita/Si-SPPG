@@ -1,6 +1,4 @@
-<?php
-// header.php
-?>
+
 <!doctype html>
 <html lang="id">
 <head>
@@ -13,9 +11,8 @@
       font-family: 'Segoe UI', Arial, sans-serif;
     }
 
-    /* Navbar utama */
     .navbar {
-      background-color: #1d2975; /* biru tua */
+      background-color: #1d2975; 
       color: #fff;
       display: flex;
       align-items: center;
@@ -24,7 +21,6 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Bagian kiri (logo + teks) */
     .navbar-left {
       display: flex;
       align-items: center;
@@ -32,7 +28,7 @@
     }
 
     .navbar-left img {
-      height: 50px; /* nanti sesuaikan ukuran logo */
+      height: 50px; 
       width: 50px;
       object-fit: contain;
       border-radius: 50%;
@@ -45,7 +41,6 @@
       letter-spacing: 0.3px;
     }
 
-    /* Gaya tulisan Rufina di sini */
     .navbar-left h1 {
       font-family: 'Rufina', serif;
       font-size: 22px;
@@ -53,7 +48,8 @@
       color: #ffffff;
       margin: 0;
       letter-spacing: 0.5px;
-    }nu kanan */
+    }
+
     .navbar-right {
       display: flex;
       align-items: center;
@@ -69,8 +65,6 @@
       position: relative;
     }
 
-
-    /* Garis bawah aktif */
     .navbar-right a:hover::after,
     .navbar-right a.active::after {
       content: '';
@@ -86,7 +80,6 @@
       opacity: 0.9;
     }
 
-    /* Responsif */
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -105,7 +98,6 @@
 
   <nav class="navbar">
     <div class="navbar-left">
-      <!-- Ganti src dengan logo kamu -->
       <img src="../assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo">
       <h1>SI-SPPG Pucang 2</h1>
     </div>

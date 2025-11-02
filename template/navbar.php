@@ -4,86 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SI-SPPG Pucang 2</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-    }
-
-    .navbar {
-      background-color: #1d2975; 
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 40px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .navbar-left img {
-      height: 50px; 
-      width: 50px;
-      object-fit: contain;
-      border-radius: 50%;
-    }
-
-    .navbar-left h1 {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 0;
-      letter-spacing: 0.3px;
-    }
-
-    .navbar-left h1 {
-      font-family: 'Rufina', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: #ffffff;
-      margin: 0;
-      letter-spacing: 0.5px;
-    }
-
-    .navbar-right {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-
-    .navbar-right a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      padding-bottom: 6px;
-    }
-
-    .navbar-right a.active {
-      border-bottom: 2px solid #ffffff;
-    }
-
-    .navbar-right a:hover {
-      opacity: 0.9;
-    }
-
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
-      }
-      .navbar-right {
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-top: 8px;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -93,20 +13,52 @@
       return $name === $current ? 'active' : '';
   }
   ?>
+<nav class="navbar">
+  <div class="navbar-left">
+    <img src="/Si-SPPG/assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi" style="height:50px; width:50px; object-fit:contain; border-radius:6px;">
+    <h1>SI-SPPG Pucang 2</h1>
+  </div>
 
-  <nav class="navbar">
-    <div class="navbar-left">
-      <img src="/Si-SPPG/assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi" style="height:50px; width:50px; object-fit:contain; border-radius:6px;">
-      <h1>SI-SPPG Pucang 2</h1>
-    </div>
+  <div class="navbar-right">
+    <a href="index.php" class="<?php echo is_active('index.php', $current); ?>">Beranda</a>
+    <a href="menu.php" class="<?php echo is_active('menu.php', $current); ?>">Menu</a>
+    <a href="tentang.php" class="<?php echo is_active('tentang.php', $current); ?>">Tentang Kami</a>
+    <a href="laporan.php" class="<?php echo is_active('laporan.php', $current); ?>">Pelayanan & Pengajuan</a>
+  </div>
+</nav>
 
-    <div class="navbar-right">
-      <a href="index.php" class="<?php echo is_active('index.php', $current); ?>">Beranda</a>
-      <a href="menu.php" class="<?php echo is_active('menu.php', $current); ?>">Menu</a>
-      <a href="tentang.php" class="<?php echo is_active('tentang.php', $current); ?>">Tentang Kami</a>
-      <a href="laporan.php" class="<?php echo is_active('laporan.php', $current); ?>">Pelayanan & Pengajuan</a>
-    </div>
-  </nav>
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #1d2975;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    height: 66px; /* standard height */
+    box-sizing: border-box;
+  }
+
+  .navbar-left { display: flex; align-items: center; gap: 12px; }
+  .navbar-left img { height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
+  .navbar-left h1 { font-family: 'Rufina', serif; font-size: 22px; font-weight: 700; color: #ffffff; margin: 0; }
+
+  .navbar-right { display: flex; align-items: center; gap: 25px; }
+  .navbar-right a { color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 500; padding-bottom: 6px; }
+  .navbar-right a.active { border-bottom: 2px solid #ffffff; }
+  .navbar-right a:hover { opacity: 0.9; }
+
+  @media (max-width: 768px) {
+    .navbar { flex-direction: column; align-items: flex-start; padding: 10px 20px; height: auto; }
+    .navbar-right { flex-wrap: wrap; gap: 15px; margin-top: 8px; }
+  }
+</style>
 
 </body>
 </html>

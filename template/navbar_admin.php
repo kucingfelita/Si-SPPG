@@ -1,14 +1,18 @@
-
 <!doctype html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SI-SPPG Pucang 2</title>
+
+  <!-- Font Rufina -->
+  <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f5f6fa;
     }
 
     .navbar {
@@ -17,8 +21,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 40px;
+      padding: 12px 40px; /* ukuran sama dengan navbar awal */
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+      /* agar tetap di atas */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
     }
 
     .navbar-left {
@@ -35,13 +46,6 @@
     }
 
     .navbar-left h1 {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 0;
-      letter-spacing: 0.3px;
-    }
-
-    .navbar-left h1 {
       font-family: 'Rufina', serif;
       font-size: 22px;
       font-weight: 700;
@@ -53,7 +57,7 @@
     .navbar-right {
       display: flex;
       align-items: center;
-      gap: 25px;
+      gap: 20px; /* 🔧 jarak antar tulisan diatur di sini */
     }
 
     .navbar-right a {
@@ -61,15 +65,17 @@
       text-decoration: none;
       font-size: 15px;
       font-weight: 500;
+      padding-bottom: 6px;
       transition: all 0.2s ease;
       position: relative;
+      display: inline-block;
     }
 
     .navbar-right a:hover::after,
     .navbar-right a.active::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -4px;
       left: 0;
       width: 100%;
       height: 2px;

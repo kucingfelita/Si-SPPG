@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="id">
 <head>
@@ -11,7 +12,7 @@
     }
 
     .navbar {
-      background-color: #1d2975; /* biru tua */
+      background-color: #1d2975; 
       color: #fff;
       display: flex;
       align-items: center;

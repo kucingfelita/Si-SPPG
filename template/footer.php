@@ -18,6 +18,7 @@
    .footer-p {
       color: #000;
       text-align: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
    }
 </style>
 

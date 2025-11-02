@@ -47,10 +47,10 @@
 
   .navbar-left { display: flex; align-items: center; gap: 12px; }
   .navbar-left img { height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
-  .navbar-left h1 { font-family: 'Rufina', serif; font-size: 22px; font-weight: 700; color: #ffffff; margin: 0; }
+  .navbar-left h1 { font-family: 'Segoe UI', Arial, sans-serif; font-size: 22px; font-weight: 700; color: #ffffff; margin: 0; }
 
   .navbar-right { display: flex; align-items: center; gap: 25px; }
-  .navbar-right a { color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 500; padding-bottom: 6px; }
+  .navbar-right a { color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 500; padding-bottom: 6px; font-family: 'Segoe UI', Arial, sans-serif; }
   .navbar-right a.active { border-bottom: 2px solid #ffffff; }
   .navbar-right a:hover { opacity: 0.9; }
 

@@ -63,7 +63,7 @@ if (isset($_POST['login'])) {
     body {
         margin: 0;
         padding: 0;
-        font-family: Poppins, sans-serif;
+        font-family: 'Segoe UI', Arial, sans-serif;
         background: #0C2876;
     }
     .container {

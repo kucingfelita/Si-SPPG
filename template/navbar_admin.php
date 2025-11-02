@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SI-SPPG Pucang 2</title>
 
-  <!-- Font Rufina -->
-  <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -46,7 +44,7 @@
     }
 
     .navbar-left h1 {
-      font-family: 'Rufina', serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       font-size: 22px;
       font-weight: 700;
       color: #ffffff;
@@ -69,6 +67,7 @@
       transition: all 0.2s ease;
       position: relative;
       display: inline-block;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     .navbar-right a:hover::after,

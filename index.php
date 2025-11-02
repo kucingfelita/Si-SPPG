@@ -8,8 +8,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Halaman Utama - Satuan Pelayanan Pemenuhan Gizi</title>
 
-  <!-- ✅ Link Google Fonts yang benar -->
-  <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -55,7 +53,7 @@
     }
 
     .hero-content h1 {
-      font-family: 'Abhaya Libre', serif; /* ✅ Terapkan langsung juga */
+      font-family: 'Segoe UI', Arial, sans-serif; /* ✅ Terapkan langsung juga */
       font-size: 44px;
       font-weight: 800; /* ExtraBold */
       margin-bottom: 12px;
@@ -63,7 +61,7 @@
     }
 
     .hero-content p {
-      font-family: 'Abhaya Libre', serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       font-size: 22px;
       font-weight: 400;
       color: #f0f0f0;

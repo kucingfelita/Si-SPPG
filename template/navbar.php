@@ -60,10 +60,9 @@
       text-decoration: none;
       font-size: 15px;
       font-weight: 500;
-      padding-bottom: 6px; /* ruang untuk border-bottom */
+      padding-bottom: 6px;
     }
 
-    /* Garis bawah statis untuk link aktif (tidak menggunakan animasi/ pseudo-element) */
     .navbar-right a.active {
       border-bottom: 2px solid #ffffff;
     }
@@ -89,8 +88,7 @@
 <body>
 
   <?php
-  // tentukan file saat ini untuk memberi class "active" pada link yang sesuai
-  $current = basename($_SERVER['SCRIPT_NAME']); // contoh: index.php
+  $current = basename($_SERVER['SCRIPT_NAME']);
   function is_active($name, $current) {
       return $name === $current ? 'active' : '';
   }
@@ -98,8 +96,6 @@
 
   <nav class="navbar">
     <div class="navbar-left">
-      <!-- Gunakan path relatif terhadap file halaman (tentang.php berada di root proyek),
-           atau path absolut dari localhost: /Si-SPPG/... -->
       <img src="/Si-SPPG/assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi" style="height:50px; width:50px; object-fit:contain; border-radius:6px;">
       <h1>SI-SPPG Pucang 2</h1>
     </div>

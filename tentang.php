@@ -7,53 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami | SI-SPPG Pucang 2</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        main {
-            max-width: 850px;
-            background: white;
-            margin: 30px auto;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #002b6b;
-            margin-top: 0;
-        }
-
-        h3 {
-            color: #002b6b;
-            margin-bottom: 5px;
-            margin-top: 25px;
-        }
-
-        ul {
-            margin-top: 5px;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 6px;
-        }
-
-        p {
-            text-align: justify;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/tentang.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 </head>
 <body>
 <?php require 'template/navbar.php'; ?>
-
 <main>
     <h2>Apa itu SPPG dalam Program Makan Bergizi Gratis?</h2>
 
@@ -99,7 +57,6 @@
         <li>Menciptakan tata kelola program yang transparan dan profesional.</li>
     </ul>
 </main>
-
 <?php require 'template/footer.php'; ?>
 </body>
 </html>

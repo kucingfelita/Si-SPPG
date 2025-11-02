@@ -60,19 +60,12 @@
       text-decoration: none;
       font-size: 15px;
       font-weight: 500;
-      transition: all 0.2s ease;
-      position: relative;
+      padding-bottom: 6px; /* ruang untuk border-bottom */
     }
 
-    .navbar-right a:hover::after,
-    .navbar-right a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #ffffff;
+    /* Garis bawah statis untuk link aktif (tidak menggunakan animasi/ pseudo-element) */
+    .navbar-right a.active {
+      border-bottom: 2px solid #ffffff;
     }
 
     .navbar-right a:hover {
@@ -95,17 +88,27 @@
 </head>
 <body>
 
+  <?php
+  // tentukan file saat ini untuk memberi class "active" pada link yang sesuai
+  $current = basename($_SERVER['SCRIPT_NAME']); // contoh: index.php
+  function is_active($name, $current) {
+      return $name === $current ? 'active' : '';
+  }
+  ?>
+
   <nav class="navbar">
     <div class="navbar-left">
-      <img src="../assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo">
+      <!-- Gunakan path relatif terhadap file halaman (tentang.php berada di root proyek),
+           atau path absolut dari localhost: /Si-SPPG/... -->
+      <img src="/Si-SPPG/assets/img/Logo_Badan_Gizi_Nasional_(2024).png" alt="Logo Badan Gizi" style="height:50px; width:50px; object-fit:contain; border-radius:6px;">
       <h1>SI-SPPG Pucang 2</h1>
     </div>
 
     <div class="navbar-right">
-      <a href="index.php" class="active">Dashboard</a>
-      <a href="menu.php">Menu</a>
-      <a href="tentang.php">Tentang Kami</a>
-      <a href="laporan.php">Pelayanan & Pengajuan</a>
+      <a href="index.php" class="<?php echo is_active('index.php', $current); ?>">Beranda</a>
+      <a href="menu.php" class="<?php echo is_active('menu.php', $current); ?>">Menu</a>
+      <a href="tentang.php" class="<?php echo is_active('tentang.php', $current); ?>">Tentang Kami</a>
+      <a href="laporan.php" class="<?php echo is_active('laporan.php', $current); ?>">Pelayanan & Pengajuan</a>
     </div>
   </nav>
 

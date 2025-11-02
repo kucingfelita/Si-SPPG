@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../assets/css/footer.css">
-<footer>
-   <p>&copy;2025 Satuan Pelayanan Pemenuhan Gizi. All Right Reserved</p>
-</footer>
+<!-- template/footer.php -->
+<div class="footer" style="text-align:center;color:#666;font-size:13px;margin-top:40px;padding:10px 0;">
+    ©2025 Satuan Pelayanan Pemenuhan Gizi. All rights reserved.
+</div>

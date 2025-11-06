@@ -24,7 +24,7 @@
 
 <body>
    <footer class="site-footer">
-      <p class="footer-p">&copy;2025 Satuan Pelayanan Pemenuhan Gizi. All rights reserved</p>
+      <p class="footer-p">&copy;2025 Satuan Pelayanan Pemenuhan Gizi. All rights reserved<?php if (isset($show_admin_login_in_footer) && $show_admin_login_in_footer): ?> | <a href="admin/login.php" style="color: #000; text-decoration: none;">Login Admin</a><?php endif; ?></p>
    </footer>
 </body>
 

@@ -16,6 +16,8 @@ if (isset($_POST['login'])) {
         // include DB connection
         require_once __DIR__ . '/../koneksi.php';
 
+        $koneksi = check_and_reconnect($koneksi);
+
         if (!isset($koneksi) || !$koneksi) {
             echo "<script>alert('Tidak dapat terhubung ke database.');</script>";
         } else {
@@ -64,65 +66,78 @@ if (isset($_POST['login'])) {
         margin: 0;
         padding: 0;
         font-family: 'Segoe UI', Arial, sans-serif;
-        background: #0C2876;
+        background: linear-gradient(to right, #0C2876, #0096FF);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
     .container {
         width: 100%;
-        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
     .logo img {
-        width: 90px;
+        width: 100px;
         margin-bottom: 20px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
     }
     .box {
-        background: #E5E5E5;
-        width: 350px;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 0px 3px #0096FF;
+        background: rgba(255, 255, 255, 0.9);
+        width: 380px;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         text-align: center;
+    }
+    .box h2 {
+        margin-bottom: 20px;
+        color: #333;
     }
     .box label {
         float: left;
-        font-size: 13px;
+        font-size: 14px;
+        color: #555;
         margin-bottom: 5px;
-        margin-top: 10px;
     }
     .box input {
         width: 100%;
-        padding: 10px;
-        border-radius: 7px;
-        border: 1px solid #999;
-        margin-bottom: 10px;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
         outline: none;
+        transition: border-color 0.3s;
+    }
+    .box input:focus {
+        border-color: #0096FF;
     }
     .btn-login {
         background: #FFDB58;
         width: 100%;
         border: none;
-        padding: 12px;
-        border-radius: 20px;
+        padding: 15px;
+        border-radius: 8px;
         font-weight: bold;
+        font-size: 16px;
         cursor: pointer;
         margin-top: 10px;
-        transition: .3s;
+        transition: background-color 0.3s;
     }
     .btn-login:hover {
-        opacity: .8;
+        background-color: #FFC700;
     }
     .back {
-        margin-top: 15px;
+        margin-top: 20px;
         display: block;
-        font-size: 12px;
+        font-size: 14px;
         text-decoration: none;
-        color: black;
+        color: #555;
+        transition: color 0.3s;
+    }
+    .back:hover {
+        color: #000;
     }
 </style>
 </head>

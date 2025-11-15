@@ -35,7 +35,7 @@
     .hero {
       position: relative;
       width: 100%;
-      min-height: 80vh; /* Use min-height instead of fixed height */
+      min-height: 100vh; /* Use min-height instead of fixed height */
       background-image: url('assets/img/gambarsppg.jpg'); /* ganti dengan gambar kamu */
       background-size: cover;
       background-position: center;

@@ -8,10 +8,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami | SI-SPPG Pucang 2</title>
     <link rel="stylesheet" href="assets/css/tentang.css">
-</head>
+    <style>
+        html, body {
+            overflow-y: scroll; /* Always show scrollbar to prevent layout shifts */
+        }
+        body {
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            padding-top: 76px; /* sesuai tinggi navbar (66px) + 10px jarak */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .main-wrapper {
+            flex: 1 0 auto;
+        }
+
+        .main {
+            max-width: 900px; /* Slightly wider */
+            background: white;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 40px; /* More padding */
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08); /* Softer, larger shadow */
+            margin-bottom: 50px; /* Add margin to the bottom */
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                max-width: 100%;
+                padding: 25px;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: #1d2975; /* Darker blue for headings */
+            margin-top: 0;
+            margin-bottom: 30px; /* More space below heading */
+            font-size: 2.2em; /* Larger heading */
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #1d2975;
+            margin-bottom: 10px; /* More space below subheadings */
+            margin-top: 35px; /* More space above subheadings */
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        ul {
+            margin-top: 10px;
+            padding-left: 25px;
+            line-height: 1.8; /* Improved line spacing */
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.7; /* Improved line spacing */
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main {
+                margin-top: 20px;
+                padding: 25px;
+                border-radius: 8px;
+            }
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            h3 {
+                font-size: 1.3em;
+                margin-top: 25px;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main {
+                margin-top: 15px;
+                padding: 15px;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 <body>
 <?php require 'template/navbar.php'; ?>
 
+<div class="main-wrapper">
 <div class="main">
     <h2>Apa itu SPPG dalam Program Makan Bergizi Gratis?</h2>
 
@@ -56,6 +163,7 @@
         <li>Mendorong partisipasi, tanggung jawab, dan kolaborasi dengan UMKM dengan mendengarkan masukan dan kebutuhan lokal.</li>
         <li>Menciptakan tata kelola program yang transparan dan profesional.</li>
     </ul>
+</div>
 </div>
 <?php require 'template/footer.php'; ?>
 </body>

@@ -186,7 +186,8 @@ $result = mysqli_stmt_get_result($stmt);
                             <p><strong>Lauk:</strong> <?php echo $row['lauk']; ?></p>
                             <p><strong>Saus:</strong> <?php echo $row['saus']; ?></p>
                             <p><strong>Dessert:</strong> <?php echo $row['dessert']; ?></p>
-                            <button class="btn-gizi" onclick='openGiziModal(<?php echo json_encode($row); ?>)'>Lihat Gizi</button>
+                            <button class="btn-gizi" onclick='openGiziModal(<?php echo json_encode($row); ?>, "besar")'>Lihat Gizi Besar</button>
+                            <button class="btn-gizi" onclick='openGiziModal(<?php echo json_encode($row); ?>, "kecil")'>Lihat Gizi Kecil</button>
                         </div>
                     </div>
                 </div>
@@ -208,16 +209,21 @@ $result = mysqli_stmt_get_result($stmt);
         const giziModal = document.getElementById('giziModal');
         const giziContent = document.getElementById('giziContent');
 
-        function openGiziModal(data) {
+        function openGiziModal(data, ukuran) {
             giziContent.innerHTML = '';
-            giziContent.innerHTML += `<p><strong>Energi (Besar):</strong> ${data.energi_besar}</p>`;
-            giziContent.innerHTML += `<p><strong>Protein (Besar):</strong> ${data.protein_besar}</p>`;
-            giziContent.innerHTML += `<p><strong>Lemak (Besar):</strong> ${data.lemak_besar}</p>`;
-            giziContent.innerHTML += `<p><strong>Karbohidrat (Besar):</strong> ${data.karbo_besar}</p>`;
-            giziContent.innerHTML += `<p><strong>Energi (Kecil):</strong> ${data.energi_kecil}</p>`;
-            giziContent.innerHTML += `<p><strong>Protein (Kecil):</strong> ${data.protein_kecil}</p>`;
-            giziContent.innerHTML += `<p><strong>Lemak (Kecil):</strong> ${data.lemak_kecil}</p>`;
-            giziContent.innerHTML += `<p><strong>Karbohidrat (Kecil):</strong> ${data.karbo_kecil}</p>`;
+            if (ukuran === 'besar') {
+                giziContent.innerHTML += `<p><strong>Energi (Besar):</strong> ${data.energi_besar}</p>`;
+                giziContent.innerHTML += `<p><strong>Protein (Besar):</strong> ${data.protein_besar}</p>`;
+                giziContent.innerHTML += `<p><strong>Lemak (Besar):</strong> ${data.lemak_besar}</p>`;
+                giziContent.innerHTML += `<p><strong>Karbohidrat (Besar):</strong> ${data.karbo_besar}</p>`;
+            } else if (ukuran === 'kecil') {
+                giziContent.innerHTML += `<p><strong>Energi (Kecil):</strong> ${data.energi_kecil}</p>`;
+                giziContent.innerHTML += `<p><strong>Protein (Kecil):</strong> ${data.protein_kecil}</p>`;
+                giziContent.innerHTML += `<p><strong>Lemak (Kecil):</strong> ${data.lemak_kecil}</p>`;
+                giziContent.innerHTML += `<p><strong>Karbohidrat (Kecil):</strong> ${data.karbo_kecil}</p>`;
+            }
+            // update modal heading to indicate which size
+            document.querySelector('#giziModal h3').textContent = `Informasi Gizi (${ukuran.charAt(0).toUpperCase() + ukuran.slice(1)})`;
             giziModal.style.display = 'block';
         }
 

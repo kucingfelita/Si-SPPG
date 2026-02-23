@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "120408";
+$pass = "";
 $db = "db_si_sppg";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);

@@ -102,6 +102,7 @@ $result = mysqli_stmt_get_result($stmt);
         .btn-add { background-color: #28a745; }
         .btn-edit { background-color: #ffc107; }
         .btn-delete { background-color: #dc3545; }
+        .btn-print { background-color: #17a2b8; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
         th { background-color: #f2f2f2; }
@@ -124,11 +125,14 @@ $result = mysqli_stmt_get_result($stmt);
         </form>
 
         <button class="btn btn-add" onclick="openModal(null)">Tambah Menu</button>
+        <button class="btn btn-add" onclick="printAll()">Cetak Semua</button>
+        <button class="btn btn-add" onclick="printSelected()">Cetak Terpilih</button>
 
         <div class="table-wrapper">
         <table>
             <thead>
                 <tr>
+                    <th><input type="checkbox" id="selectAll" onclick="toggleSelectAll(this)"></th>
                     <th>Nama Menu</th>
                     <th>Tanggal</th>
                     <th>Menu Utama</th>
@@ -139,11 +143,13 @@ $result = mysqli_stmt_get_result($stmt);
             <tbody>
                 <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <tr>
+                    <td><input type="checkbox" class="rowCheckbox" value="<?php echo $row['id']; ?>"></td>
                     <td><?php echo $row['namamenu']; ?></td>
                     <td><?php echo $row['tanggal']; ?></td>
                     <td><?php echo $row['menu_utama']; ?></td>
                     <td><?php echo $row['lauk']; ?></td>
                     <td>
+                        <button class="btn btn-print" onclick="printSelectedSingle(<?php echo $row['id']; ?>)">Cetak</button>
                         <button class="btn btn-info" onclick='openGiziModal(<?php echo json_encode($row); ?>)'>Lihat Gizi</button>
                         <button class="btn btn-edit" onclick='openModal(<?php echo json_encode($row); ?>)'>Edit</button>
                         <a href="kelola_menu.php?delete=<?php echo $row['id']; ?>" class="btn btn-delete" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
@@ -265,6 +271,35 @@ $result = mysqli_stmt_get_result($stmt);
             if (event.target == giziModal) {
                 closeGiziModal();
             }
+        }
+
+        // print helpers
+        function toggleSelectAll(source) {
+            const checkboxes = document.querySelectorAll('.rowCheckbox');
+            checkboxes.forEach(cb => cb.checked = source.checked);
+        }
+
+        function printAll() {
+            const searchVal = document.querySelector('input[name="search"]').value;
+            if (searchVal) {
+                window.open('cetak_menu.php?search=' + encodeURIComponent(searchVal), '_self');
+            } else {
+                window.open('cetak_menu.php?all=1', '_self');
+            }
+        }
+
+        function printSelected() {
+            const checked = document.querySelectorAll('.rowCheckbox:checked');
+            if (checked.length === 0) {
+                alert('Pilih minimal satu menu.');
+                return;
+            }
+            const ids = Array.from(checked).map(cb => cb.value).join(',');
+            window.open('cetak_menu.php?ids=' + ids, '_self');
+        }
+
+        function printSelectedSingle(id) {
+            window.open('cetak_menu.php?ids=' + id, '_self');
         }
     </script>
 

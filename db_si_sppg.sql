@@ -80,7 +80,7 @@ CREATE TABLE `menu` (
 CREATE TABLE `pelayanan` (
   `id` int(11) NOT NULL,
   `nama` varchar(100) DEFAULT 'Pengirim Rahasia',
-  `tanggal` date NOT NULL DEFAULT current_timestamp(),
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `jenis` enum('Request','Keluhan') NOT NULL,
   `pesan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -120,11 +120,26 @@
     <div class="navbar-right">
       <?php
       $current_page = basename($_SERVER['SCRIPT_NAME']);
+      
+      // Get logged-in admin name
+      $admin_name = isset($_SESSION['admin']) ? $_SESSION['admin'] : 'Admin';
+      if (isset($koneksi)) {
+          $stmt = mysqli_prepare($koneksi, "SELECT namalengkap FROM admin WHERE username = ?");
+          mysqli_stmt_bind_param($stmt, 's', $admin_name);
+          mysqli_stmt_execute($stmt);
+          mysqli_stmt_bind_result($stmt, $namalengkap);
+          mysqli_stmt_fetch($stmt);
+          mysqli_stmt_close($stmt);
+          $display_name = $namalengkap ? $namalengkap : $admin_name;
+      } else {
+          $display_name = $admin_name;
+      }
       ?>
       <a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Dashboard</a>
       <a href="kelola_menu.php" class="<?php echo ($current_page == 'kelola_menu.php') ? 'active' : ''; ?>">Kelola Menu</a>
       <a href="kelola_pelayanan.php" class="<?php echo ($current_page == 'kelola_pelayanan.php') ? 'active' : ''; ?>">Kelola Pelayanan & Pengajuan</a>
-      <a href="logout.php">Logout</a>
+      <span style="border-left: 1px solid rgba(255,255,255,0.3); height: 20px; margin: 0 10px;"></span>
+      <a href="profil_admin.php" style="font-weight: 600;"><?php echo htmlspecialchars($display_name); ?></a>
     </div>
     <button class="hamburger" aria-label="Toggle navigation">
       <span class="hamburger-line"></span>

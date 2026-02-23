@@ -138,6 +138,7 @@
       <a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Dashboard</a>
       <a href="kelola_menu.php" class="<?php echo ($current_page == 'kelola_menu.php') ? 'active' : ''; ?>">Kelola Menu</a>
       <a href="kelola_pelayanan.php" class="<?php echo ($current_page == 'kelola_pelayanan.php') ? 'active' : ''; ?>">Kelola Pelayanan & Pengajuan</a>
+      <a href="tambah_admin.php" class="<?php echo ($current_page == 'tambah_admin.php') ? 'active' : ''; ?>">Tambah Admin</a>
       <span style="border-left: 1px solid rgba(255,255,255,0.3); height: 20px; margin: 0 10px;"></span>
       <a href="profil_admin.php" style="font-weight: 600;"><?php echo htmlspecialchars($display_name); ?></a>
     </div>

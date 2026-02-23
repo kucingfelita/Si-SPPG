@@ -124,6 +124,7 @@
       <a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Dashboard</a>
       <a href="kelola_menu.php" class="<?php echo ($current_page == 'kelola_menu.php') ? 'active' : ''; ?>">Kelola Menu</a>
       <a href="kelola_pelayanan.php" class="<?php echo ($current_page == 'kelola_pelayanan.php') ? 'active' : ''; ?>">Kelola Pelayanan & Pengajuan</a>
+      <a href="tambah_admin.php" class="<?php echo ($current_page == 'tambah_admin.php') ? 'active' : ''; ?>">Tambah Admin</a>
       <a href="logout.php">Logout</a>
     </div>
     <button class="hamburger" aria-label="Toggle navigation">

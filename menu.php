@@ -14,14 +14,18 @@ $result = mysqli_stmt_get_result($stmt);
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Makanan - SI-SPPG Pucang 2</title>
     <style>
-        html, body {
-            overflow-y: scroll; /* Always show scrollbar to prevent layout shifts */
+        html,
+        body {
+            overflow-y: scroll;
+            /* Always show scrollbar to prevent layout shifts */
         }
+
         body {
             background-color: #f4f6f9;
             margin: 0;
@@ -32,6 +36,7 @@ $result = mysqli_stmt_get_result($stmt);
             flex-direction: column;
             min-height: 100vh;
         }
+
         .main {
             flex-grow: 1;
             max-width: 1200px;
@@ -45,50 +50,61 @@ $result = mysqli_stmt_get_result($stmt);
                 padding: 15px;
             }
         }
+
         h2 {
             text-align: center;
             color: #002b6b;
             margin-bottom: 30px;
         }
+
         .menu-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
         }
+
         .menu-card {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: transform 0.2s;
         }
+
         .menu-card:hover {
             transform: translateY(-5px);
         }
+
         .menu-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
         .menu-content {
             padding: 15px;
         }
+
         .menu-content h3 {
             margin-top: 0;
             color: #333;
         }
+
         .menu-content .date {
             font-size: 12px;
             color: #777;
             margin-bottom: 10px;
         }
+
         .menu-details p {
             margin: 5px 0;
             font-size: 14px;
         }
+
         .menu-details strong {
             color: #002b6b;
         }
+
         .btn-gizi {
             background-color: #17a2b8;
             color: white;
@@ -98,32 +114,36 @@ $result = mysqli_stmt_get_result($stmt);
             cursor: pointer;
             margin-top: 10px;
         }
+
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1001; 
+            display: none;
+            position: fixed;
+            z-index: 1001;
             left: 0;
             top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.4); 
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
         }
+
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto; 
+            margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
             max-width: 500px;
             border-radius: 8px;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
+
         .close:hover,
         .close:focus {
             color: black;
@@ -159,12 +179,14 @@ $result = mysqli_stmt_get_result($stmt);
                 width: 100%;
                 margin-bottom: 10px;
             }
+
             .search-button {
                 width: 100%;
             }
         }
     </style>
 </head>
+
 <body>
     <?php include 'template/navbar.php'; ?>
 
@@ -175,7 +197,7 @@ $result = mysqli_stmt_get_result($stmt);
             <button type="submit" class="search-button">Cari</button>
         </form>
         <div class="menu-container">
-            <?php while($row = mysqli_fetch_assoc($result)): ?>
+            <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <div class="menu-card">
                     <img src="assets/uploads/<?php echo $row['foto']; ?>" alt="<?php echo $row['namamenu']; ?>">
                     <div class="menu-content">
@@ -238,4 +260,5 @@ $result = mysqli_stmt_get_result($stmt);
         }
     </script>
 </body>
+
 </html>

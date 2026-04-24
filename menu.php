@@ -1,68 +1,60 @@
 <?php
 include 'koneksi.php';
+$koneksi = mysqli_connect($koneksi);
 
-$koneksi = check_and_reconnect($koneksi);
-
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-$sql = "SELECT * FROM menu WHERE namamenu LIKE ? ORDER BY tanggal DESC";
-$stmt = mysqli_prepare($koneksi, $sql);
-$search_param = "%$search%";
-mysqli_stmt_bind_param($stmt, 's', $search_param);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+if (isset($_GET['id'])) {
+    // Jika ada parameter id → tampilkan detail gizi
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM menu WHERE id = ?";
+    $stmt = mysqli_prepare($koneksi, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+} else {
+    // Kalau tidak ada id → tampilkan semua daftar menu
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+    $sql = "SELECT * FROM menu WHERE namamenu LIKE ? ORDER BY tanggal DESC";
+    $stmt = mysqli_prepare($koneksi, $sql);
+    $search_param = "%$search%";
+    mysqli_stmt_bind_param($stmt, 's', $search_param);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Makanan - SI-SPPG Pucang 2</title>
     <style>
-        html,
-        body {
-            overflow-y: scroll;
-            /* Always show scrollbar to prevent layout shifts */
-        }
-
         body {
             background-color: #f4f6f9;
             margin: 0;
-            padding: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
             padding-top: 76px;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-
         .main {
             flex-grow: 1;
             max-width: 1200px;
             margin: 30px auto;
             padding: 20px;
         }
-
-        @media (max-width: 768px) {
-            .main {
-                max-width: 100%;
-                padding: 15px;
-            }
-        }
-
         h2 {
             text-align: center;
             color: #002b6b;
             margin-bottom: 30px;
         }
-
         .menu-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
         }
-
         .menu-card {
             background: white;
             border-radius: 8px;
@@ -70,41 +62,11 @@ $result = mysqli_stmt_get_result($stmt);
             overflow: hidden;
             transition: transform 0.2s;
         }
-
-        .menu-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .menu-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .menu-content {
-            padding: 15px;
-        }
-
-        .menu-content h3 {
-            margin-top: 0;
-            color: #333;
-        }
-
-        .menu-content .date {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-
-        .menu-details p {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-
-        .menu-details strong {
-            color: #002b6b;
-        }
-
+        .menu-card:hover { transform: translateY(-5px); }
+        .menu-card img { width: 100%; height: 200px; object-fit: cover; }
+        .menu-content { padding: 15px; }
+        .menu-content h3 { margin-top: 0; color: #333; }
+        .menu-content .date { font-size: 12px; color: #777; margin-bottom: 10px; }
         .btn-gizi {
             background-color: #17a2b8;
             color: white;
@@ -112,153 +74,125 @@ $result = mysqli_stmt_get_result($stmt);
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
             margin-top: 10px;
         }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1001;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
+        .detail-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
+        .detail-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .detail-header img {
+            max-width: 250px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .gizi-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .gizi-box {
+            background: #f9fafc;
+            border: 1px solid #ddd;
             border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 300px;
         }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .gizi-box h3 {
+            color: #002b6b;
+            text-align: center;
         }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        .gizi-box p {
+            font-size: 15px;
+            margin: 5px 0;
         }
-
-        .search-input {
-            padding: 10px;
-            width: 300px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .search-button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            background-color: #1d2975;
+        a.back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            background-color: #17a2b8;
             color: white;
-            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        @media (max-width: 768px) {
-            .search-input {
-                width: 200px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .search-input {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-
-            .search-button {
-                width: 100%;
-            }
+        a.back-btn:hover {
+            background-color: #138496;
         }
     </style>
 </head>
-
 <body>
-    <?php include 'template/navbar.php'; ?>
+<?php include 'template/navbar.php'; ?>
 
-    <div class="main">
-        <h2>Daftar Menu Makanan</h2>
-        <form action="menu.php" method="GET" style="margin-bottom: 20px; text-align: center;">
-            <input type="text" name="search" placeholder="Cari Nama Menu..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" class="search-input">
-            <button type="submit" class="search-button">Cari</button>
-        </form>
-        <div class="menu-container">
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <div class="menu-card">
-                    <img src="assets/uploads/<?php echo $row['foto']; ?>" alt="<?php echo $row['namamenu']; ?>">
-                    <div class="menu-content">
-                        <h3><?php echo $row['namamenu']; ?></h3>
-                        <p class="date">Tanggal: <?php echo date('d F Y', strtotime($row['tanggal'])); ?></p>
-                        <div class="menu-details">
-                            <p><strong>Menu Utama:</strong> <?php echo $row['menu_utama']; ?></p>
-                            <p><strong>Lauk:</strong> <?php echo $row['lauk']; ?></p>
-                            <p><strong>Saus:</strong> <?php echo $row['saus']; ?></p>
-                            <p><strong>Dessert:</strong> <?php echo $row['dessert']; ?></p>
-                            <button class="btn-gizi" onclick='openGiziModal(<?php echo json_encode($row); ?>, "besar")'>Lihat Gizi Besar</button>
-                            <button class="btn-gizi" onclick='openGiziModal(<?php echo json_encode($row); ?>, "kecil")'>Lihat Gizi Kecil</button>
-                        </div>
-                    </div>
+<div class="main">
+<?php if (!isset($_GET['id'])): ?>
+    <!-- Halaman daftar menu -->
+    <h2>Daftar Menu Makanan</h2>
+    <form action="menu.php" method="GET" style="margin-bottom: 20px; text-align: center;">
+        <input type="text" name="search" placeholder="Cari Nama Menu..." 
+               value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" 
+               class="search-input" style="padding: 10px; width: 300px; border-radius: 5px; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 10px 20px; border-radius: 5px; border: none; background-color: #1d2975; color: white; cursor: pointer;">Cari</button>
+    </form>
+
+    <div class="menu-container">
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+            <div class="menu-card">
+                <img src="assets/uploads/<?php echo $row['foto']; ?>" alt="<?php echo $row['namamenu']; ?>">
+                <div class="menu-content">
+                    <h3><?php echo $row['namamenu']; ?></h3>
+                    <p class="date">Tanggal: <?php echo date('d F Y', strtotime($row['tanggal'])); ?></p>
+                    <a href="menu.php?id=<?php echo $row['id']; ?>" class="btn-gizi">Lihat Gizi</a>
                 </div>
-            <?php endwhile; ?>
-        </div>
+            </div>
+        <?php endwhile; ?>
     </div>
 
-    <div id="giziModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeGiziModal()">&times;</span>
-            <h3>Informasi Gizi</h3>
-            <div id="giziContent"></div>
+<?php else: ?>
+    <!-- Halaman detail gizi -->
+    <div class="detail-card">
+        <div class="detail-header">
+            <h2><?php echo htmlspecialchars($row['namamenu']); ?></h2>
+            <p><strong>Tanggal:</strong> <?php echo date('d F Y', strtotime($row['tanggal'])); ?></p>
+            <img src="assets/uploads/<?php echo htmlspecialchars($row['foto']); ?>" alt="<?php echo htmlspecialchars($row['namamenu']); ?>">
         </div>
+
+        <div class="gizi-section">
+            <div class="gizi-box">
+                <h3>Gizi Porsi Besar</h3>
+                <p><strong>Energi:</strong> <?php echo $row['energi_besar']; ?></p>
+                <p><strong>Protein:</strong> <?php echo $row['protein_besar']; ?></p>
+                <p><strong>Lemak:</strong> <?php echo $row['lemak_besar']; ?></p>
+                <p><strong>Karbohidrat:</strong> <?php echo $row['karbo_besar']; ?></p>
+            </div>
+
+            <div class="gizi-box">
+                <h3>Gizi Porsi Kecil</h3>
+                <p><strong>Energi:</strong> <?php echo $row['energi_kecil']; ?></p>
+                <p><strong>Protein:</strong> <?php echo $row['protein_kecil']; ?></p>
+                <p><strong>Lemak:</strong> <?php echo $row['lemak_kecil']; ?></p>
+                <p><strong>Karbohidrat:</strong> <?php echo $row['karbo_kecil']; ?></p>
+            </div>
+        </div>
+
+        <a href="menu.php" class="back-btn">← Kembali ke Daftar Menu</a>
     </div>
+<?php endif; ?>
+</div>
 
-    <?php include 'template/footer.php'; ?>
-
-    <script>
-        const giziModal = document.getElementById('giziModal');
-        const giziContent = document.getElementById('giziContent');
-
-        function openGiziModal(data, ukuran) {
-            giziContent.innerHTML = '';
-            if (ukuran === 'besar') {
-                giziContent.innerHTML += `<p><strong>Energi (Besar):</strong> ${data.energi_besar}</p>`;
-                giziContent.innerHTML += `<p><strong>Protein (Besar):</strong> ${data.protein_besar}</p>`;
-                giziContent.innerHTML += `<p><strong>Lemak (Besar):</strong> ${data.lemak_besar}</p>`;
-                giziContent.innerHTML += `<p><strong>Karbohidrat (Besar):</strong> ${data.karbo_besar}</p>`;
-            } else if (ukuran === 'kecil') {
-                giziContent.innerHTML += `<p><strong>Energi (Kecil):</strong> ${data.energi_kecil}</p>`;
-                giziContent.innerHTML += `<p><strong>Protein (Kecil):</strong> ${data.protein_kecil}</p>`;
-                giziContent.innerHTML += `<p><strong>Lemak (Kecil):</strong> ${data.lemak_kecil}</p>`;
-                giziContent.innerHTML += `<p><strong>Karbohidrat (Kecil):</strong> ${data.karbo_kecil}</p>`;
-            }
-            // update modal heading to indicate which size
-            document.querySelector('#giziModal h3').textContent = `Informasi Gizi (${ukuran.charAt(0).toUpperCase() + ukuran.slice(1)})`;
-            giziModal.style.display = 'block';
-        }
-
-        function closeGiziModal() {
-            giziModal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == giziModal) {
-                closeGiziModal();
-            }
-        }
-    </script>
+<?php include 'template/footer.php'; ?>
 </body>
-
 </html>
